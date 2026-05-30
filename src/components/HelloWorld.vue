@@ -3,6 +3,7 @@ import { ref } from "vue";
 import viteLogo from "../assets/vite.svg";
 import heroImg from "../assets/hero.png";
 import vueLogo from "../assets/vue.svg";
+import LangageButton from "./ui/LangageButton.vue";
 
 const count = ref(0);
 </script>
@@ -15,7 +16,8 @@ const count = ref(0);
       <img :src="viteLogo" class="vite" alt="Vite logo" />
     </div>
     <div>
-      <h1 class="text-2xl font-bold text-amber-600">Get started</h1>
+      <h1 class="text-2xl font-bold text-amber-600">{{ $t("welcome") }}</h1>
+      <LangageButton />
       <p>Edit <code>src/App.vue</code> and save to test <code>HMR</code></p>
     </div>
     <button type="button" class="counter" @click="count++">
