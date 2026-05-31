@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, watch } from "vue";
 import { useBookStore } from "./stores/bookStore";
+import Navbar from "./components/layouts/Navbar.vue";
 
 const bookStore = useBookStore();
 onMounted(() => {
@@ -15,5 +16,6 @@ watch(
 </script>
 
 <template>
+  <Navbar />
   <RouterView />
 </template>
