@@ -9,7 +9,7 @@ export const useBookStore = defineStore("book", () => {
   const loading = ref(false);
   const error = ref<string | null>(null);
 
-  async function fetchBooks(quantity = 50) {
+  async function fetchBooks(quantity = 10) {
     // Si les livres sont déjà chargés, on ne refait pas l'appel API
     if (books.value.length > 0) return;
 

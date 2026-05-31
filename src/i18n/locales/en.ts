@@ -6,4 +6,7 @@ export default {
     books: "Books",
     favorites: "Favorites",
   },
+  search: {
+    placeholder: "Search a book...",
+  },
 };
