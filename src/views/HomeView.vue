@@ -3,6 +3,7 @@ import { onMounted, ref, computed } from "vue";
 import { useBookStore } from "../stores/bookStore";
 import BookCard from "@/components/features/books/BookCard.vue";
 import BookCardSkeleton from "@/components/features/books/BookCardSkeleton.vue";
+import BooksPagination from "@/components/features/books/BooksPagination.vue";
 import { useRouter } from "vue-router";
 import SearchBar from "@/components/ui/SearchBar.vue";
 import { useI18n } from "vue-i18n";
@@ -11,8 +12,11 @@ useI18n();
 const bookStore = useBookStore();
 const router = useRouter();
 
+const ITEMS_PER_PAGE = 6;
 const searchQuery = ref("");
+const currentPage = ref(1);
 
+// Computed properties for filtering
 const filteredBooks = computed(() => {
   const q = searchQuery.value.toLowerCase().trim();
   if (!q) return bookStore.books;
@@ -24,20 +28,33 @@ const filteredBooks = computed(() => {
   );
 });
 
-//this function receives the search query from the SearchBar component event
+const paginatedBooks = computed(() => {
+  const start = (currentPage.value - 1) * ITEMS_PER_PAGE;
+  return filteredBooks.value.slice(start, start + ITEMS_PER_PAGE);
+});
+
+const total = computed(() => filteredBooks.value.length);
+
+// Event handlers for search and pagination
 function handleSearch(value: string) {
   searchQuery.value = value;
+  currentPage.value = 1; // Reset to first page on new search
+}
+
+// Event handler for pagination component
+function handlePageChange(page: number) {
+  currentPage.value = page;
 }
 
 onMounted(() => {
-  bookStore.fetchBooks();
+  bookStore.fetchBooks(50);
 });
 </script>
 
 <template>
   <main class="mx-auto max-w-7xl px-4 py-8">
-    <h1 class="text-2xl font-bold text-foreground mb-6">Books</h1>
     <div>
+      <h1 class="text-2xl font-bold text-foreground mb-6">Books</h1>
       <SearchBar @search="handleSearch" class="mb-6" />
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -46,12 +63,20 @@ onMounted(() => {
       </template>
       <template v-else>
         <BookCard
-          v-for="book in filteredBooks"
+          v-for="book in paginatedBooks"
           :key="book.id"
           :book="book"
           @select="router.push(`/books/${$event}`)"
         />
       </template>
+    </div>
+    <div class="mt-6 flex justify-center">
+      <BooksPagination
+        :total="total"
+        :items-per-page="ITEMS_PER_PAGE"
+        :current-page="currentPage"
+        @page-change="handlePageChange"
+      />
     </div>
   </main>
 </template>
