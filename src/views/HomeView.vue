@@ -4,9 +4,11 @@ import { useBookStore } from "../stores/bookStore";
 import BookCard from "@/components/features/book/BookCard.vue";
 import BookCardSkeleton from "@/components/features/book/BookCardSkeleton.vue";
 import BooksPagination from "@/components/features/book/BooksPagination.vue";
+import CardEmpty from "@/components/ui/CardEmpty.vue";
 import { useRouter } from "vue-router";
 import SearchBar from "@/components/ui/SearchBar.vue";
 import { useI18n } from "vue-i18n";
+import { SearchX } from "@lucide/vue";
 
 // Access the i18n instance for translations
 useI18n();
@@ -76,6 +78,15 @@ onMounted(() => {
           :book="book"
           @select="router.push(`/books/${$event}`)"
         />
+      </template>
+      <template v-if="!bookStore.loading && paginatedBooks.length === 0">
+        <div class="col-span-full">
+          <CardEmpty
+            :icon="SearchX"
+            :title="$t('home.noResultsTitle')"
+            :description="$t('home.noResultsMessage')"
+          />
+        </div>
       </template>
     </div>
     <div class="mt-6 flex justify-center">

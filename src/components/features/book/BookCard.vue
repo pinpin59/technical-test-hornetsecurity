@@ -38,7 +38,7 @@ const favoriteStore = useFavoriteStore();
     <img
       :src="`https://picsum.photos/600/600?random=${book.id}`"
       :alt="`${book.title} by ${book.author}`"
-      class="w-full lg:h-96 md:h-72 h-48 object-cover"
+      class="w-full lg:h-96 md:h-72 h-48 object-cover hover:brightness-80 transition"
     />
     <CardHeader class="py-4">
       <CardTitle>{{ book.title }}</CardTitle>
@@ -50,7 +50,7 @@ const favoriteStore = useFavoriteStore();
       </p>
     </CardContent>
     <CardFooter class="px-6 pb-6">
-      <Button class="w-full" @click="$emit('select', book.id)">
+      <Button class="w-full cursor-pointer" @click="$emit('select', book.id)">
         {{ $t("card.viewDetails") }}
       </Button>
     </CardFooter>

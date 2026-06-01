@@ -1,5 +1,10 @@
 export default {
   welcome: "Bienvenue",
+  home: {
+    noResultsTitle: "Aucun résultat trouvé",
+    noResultsMessage:
+      "Essayez d'ajuster votre recherche ou vos filtres pour trouver ce que vous cherchez.",
+  },
   nav: {
     title: "📚 Book Explorer",
     home: "Accueil",
