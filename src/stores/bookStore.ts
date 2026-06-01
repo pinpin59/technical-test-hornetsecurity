@@ -10,7 +10,7 @@ export const useBookStore = defineStore("book", () => {
   const error = ref<string | null>(null);
 
   async function fetchBooks(quantity = 50) {
-    // Si les livres sont déjà chargés, on ne refait pas l'appel API
+    // If we already have books loaded, we can skip fetching again
     if (books.value.length > 0) return;
 
     loading.value = true;
@@ -26,17 +26,17 @@ export const useBookStore = defineStore("book", () => {
   }
 
   async function fetchBookById(id: number) {
-    // Si le livre sélectionné est déjà celui demandé, on ne refait pas l'appel API
+    // If the selected book is already the requested one, we can skip the API call
     if (selectedBook.value?.id === id) return;
 
-    // Cherche d'abord dans les livres déjà chargés
+    // First, look for the book in the already loaded books
     const existing = books.value.find((book) => book.id === id);
     if (existing) {
       selectedBook.value = existing;
       return;
     }
 
-    // Sinon appel API
+    // Otherwise, make an API call
     loading.value = true;
     error.value = null;
     try {

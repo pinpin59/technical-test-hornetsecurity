@@ -9,7 +9,11 @@ import { Skeleton } from "@/components/ui/skeleton";
 </script>
 
 <template>
-  <Card :class="'flex flex-col overflow-hidden h-full gap-0 py-0'">
+  <Card
+    role="status"
+    aria-label="Loading book..."
+    :class="'flex flex-col overflow-hidden h-full gap-0 py-0'"
+  >
     <Skeleton
       class="w-full h-40 sm:h-48 md:h-56 lg:h-64 xl:h-72 rounded-none"
     />

@@ -34,6 +34,7 @@ const links = [
     <div
       v-if="mobileOpen"
       class="fixed inset-0 bg-black/50 z-10 md:hidden"
+      aria-hidden="true"
       @click="mobileOpen = false"
     />
   </Transition>
@@ -41,7 +42,11 @@ const links = [
   <header class="border-b bg-card relative z-20">
     <div class="mx-auto max-w-7xl px-4 h-16 flex items-center justify-between">
       <!-- Logo -->
-      <RouterLink to="/" class="font-bold text-lg text-primary">
+      <RouterLink
+        to="/"
+        class="font-bold text-lg text-primary"
+        :aria-label="t('nav.title')"
+      >
         {{ t("nav.title") }}
       </RouterLink>
 
@@ -62,6 +67,7 @@ const links = [
                 <component
                   :is="link.icon"
                   class="size-4 mr-2 text-foreground"
+                  aria-hidden="true"
                 />
                 {{ t(link.label) }}
               </RouterLink>
@@ -76,10 +82,13 @@ const links = [
         <LangageButton />
         <button
           class="p-2 rounded-md hover:bg-accent transition-colors"
+          :aria-label="mobileOpen ? t('nav.closeMenu') : t('nav.openMenu')"
+          :aria-expanded="mobileOpen"
+          aria-controls="mobile-menu"
           @click="mobileOpen = !mobileOpen"
         >
-          <X v-if="mobileOpen" class="size-5" />
-          <Menu v-else class="size-5" />
+          <X v-if="mobileOpen" class="size-5" aria-hidden="true" />
+          <Menu v-else class="size-5" aria-hidden="true" />
         </button>
       </div>
     </div>
@@ -93,9 +102,11 @@ const links = [
       leave-from-class="opacity-100 translate-y-0"
       leave-to-class="opacity-0 -translate-y-2"
     >
-      <div
+      <nav
         v-if="mobileOpen"
+        id="mobile-menu"
         class="md:hidden absolute top-full left-0 right-0 border-t bg-card px-4 py-3 flex flex-col gap-1 shadow-lg"
+        :aria-label="t('nav.mobileMenu')"
       >
         <RouterLink
           v-for="link in links"
@@ -104,10 +115,10 @@ const links = [
           class="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium hover:bg-accent transition-colors [&.router-link-active]:bg-accent [&.router-link-active]:text-accent-foreground"
           @click="mobileOpen = false"
         >
-          <component :is="link.icon" class="size-4" />
+          <component :is="link.icon" class="size-4" aria-hidden="true" />
           {{ t(link.label) }}
         </RouterLink>
-      </div>
+      </nav>
     </Transition>
   </header>
 </template>

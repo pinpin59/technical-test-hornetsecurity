@@ -29,9 +29,10 @@ function onSearch() {
       type="submit"
       variant="outline"
       size="icon"
+      :aria-label="$t('search.button')"
       :disabled="!query.trim()"
     >
-      <Search class="w-5 h-5" />
+      <Search class="w-5 h-5" aria-hidden="true" />
     </Button>
   </form>
 </template>

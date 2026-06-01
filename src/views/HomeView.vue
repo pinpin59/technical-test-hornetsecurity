@@ -8,15 +8,30 @@ import { useRouter } from "vue-router";
 import SearchBar from "@/components/ui/SearchBar.vue";
 import { useI18n } from "vue-i18n";
 
+// Access the i18n instance for translations
 useI18n();
+
+// Access the book store and router
 const bookStore = useBookStore();
 const router = useRouter();
 
+// Pagination and search state
 const ITEMS_PER_PAGE = 6;
 const searchQuery = ref("");
 const currentPage = ref(1);
 
-// Computed properties for filtering
+// Event handlers for search and pagination
+function handleSearch(value: string) {
+  searchQuery.value = value;
+  currentPage.value = 1; // Reset to first page on new search
+}
+
+// Event handler for pagination component
+function handlePageChange(page: number) {
+  currentPage.value = page;
+}
+
+// Computed properties for filtering depending on search query
 const filteredBooks = computed(() => {
   const q = searchQuery.value.toLowerCase().trim();
   if (!q) return bookStore.books;
@@ -35,17 +50,6 @@ const paginatedBooks = computed(() => {
 
 const total = computed(() => filteredBooks.value.length);
 
-// Event handlers for search and pagination
-function handleSearch(value: string) {
-  searchQuery.value = value;
-  currentPage.value = 1; // Reset to first page on new search
-}
-
-// Event handler for pagination component
-function handlePageChange(page: number) {
-  currentPage.value = page;
-}
-
 onMounted(() => {
   bookStore.fetchBooks(50);
 });
@@ -57,7 +61,11 @@ onMounted(() => {
       <h1 class="text-2xl font-bold text-foreground mb-6">Books</h1>
       <SearchBar @search="handleSearch" class="mb-6" />
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+      aria-live="polite"
+      aria-relevant="additions removals"
+    >
       <template v-if="bookStore.loading">
         <BookCardSkeleton v-for="n in 10" :key="n" />
       </template>

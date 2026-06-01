@@ -5,8 +5,15 @@ export default {
     home: "Accueil",
     books: "Livres",
     favorites: "Favoris",
+    openMenu: "Ouvrir le menu de navigation",
+    closeMenu: "Fermer le menu de navigation",
+    mobileMenu: "Navigation mobile",
   },
   search: {
     placeholder: "Rechercher un livre...",
+    button: "Rechercher",
+  },
+  card: {
+    viewDetails: "Voir le détail",
   },
 };

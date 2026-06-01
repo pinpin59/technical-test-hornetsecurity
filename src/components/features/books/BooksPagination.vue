@@ -16,7 +16,7 @@ const emit = defineEmits<{ (e: "page-change", page: number): void }>();
 </script>
 
 <template>
-  <div class="flex flex-col gap-6">
+  <nav aria-label="Books pagination" class="flex flex-col gap-6">
     <Pagination
       v-slot="{ page }"
       :items-per-page="props.itemsPerPage"
@@ -40,5 +40,5 @@ const emit = defineEmits<{ (e: "page-change", page: number): void }>();
         <PaginationNext />
       </PaginationContent>
     </Pagination>
-  </div>
+  </nav>
 </template>
