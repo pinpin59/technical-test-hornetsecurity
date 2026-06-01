@@ -17,7 +17,7 @@ const mobileOpen = ref(false);
 
 const links = [
   { to: "/", icon: Home, label: "nav.home" },
-  { to: "/books", icon: BookOpen, label: "nav.books" },
+  { to: "/favorite", icon: BookOpen, label: "nav.favorites" },
 ];
 </script>
 

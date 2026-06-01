@@ -16,4 +16,9 @@ export default {
   card: {
     viewDetails: "View Details",
   },
+  notFound: {
+    title: "Page Not Found",
+    message: "The page you are looking for does not exist.",
+    backHome: "Go back to Home",
+  },
 };

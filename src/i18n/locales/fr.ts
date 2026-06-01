@@ -16,4 +16,13 @@ export default {
   card: {
     viewDetails: "Voir le détail",
   },
+  notFound: {
+    title: "Page non trouvée",
+    message: "La page que vous recherchez n'existe pas.",
+    backHome: "Retour à l'accueil",
+  },
+  favorites: {
+    title: "Favoris",
+    description: "Vos livres favoris apparaîtront ici.",
+  },
 };
