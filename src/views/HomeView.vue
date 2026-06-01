@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { onMounted, ref, computed } from "vue";
 import { useBookStore } from "../stores/bookStore";
-import BookCard from "@/components/features/books/BookCard.vue";
-import BookCardSkeleton from "@/components/features/books/BookCardSkeleton.vue";
-import BooksPagination from "@/components/features/books/BooksPagination.vue";
+import BookCard from "@/components/features/book/BookCard.vue";
+import BookCardSkeleton from "@/components/features/book/BookCardSkeleton.vue";
+import BooksPagination from "@/components/features/book/BooksPagination.vue";
 import { useRouter } from "vue-router";
 import SearchBar from "@/components/ui/SearchBar.vue";
 import { useI18n } from "vue-i18n";

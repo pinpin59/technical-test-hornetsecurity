@@ -23,6 +23,16 @@ export default {
   },
   favorites: {
     title: "Favoris",
-    description: "Vos livres favoris apparaîtront ici.",
+    description:
+      "Gérez vos collections personnelles de lectures préférées ici.",
+    badge: "Favori",
+    book: "Livre",
+    books: "Livres",
+    emptyTitle: "Votre bibliothèque est vide",
+    emptyMessage:
+      "Il semble que vous n'avez pas encore ajouté de livres à vos favoris. Explorez notre collection et ajoutez vos livres préférés pour les retrouver facilement ici.",
+    emptyButton: "Explorer les livres",
+    emptyAstuce:
+      "Astuce : Cliquez sur le cœur sur les cartes de livres pour les ajouter à vos favoris !",
   },
 };

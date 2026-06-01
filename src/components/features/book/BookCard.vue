@@ -11,14 +11,30 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useI18n } from "vue-i18n";
+import { Heart } from "@lucide/vue";
+import { HeartPlus } from "@lucide/vue";
+
+import { useFavoriteStore } from "@/stores/favoriteStore";
 
 useI18n();
 defineProps<{ book: Book }>();
 defineEmits<{ (e: "select", id: number): void }>();
+
+const favoriteStore = useFavoriteStore();
 </script>
 
 <template>
-  <Card :class="cn('flex flex-col overflow-hidden h-full gap-0 py-0')">
+  <Card :class="cn('flex flex-col overflow-hidden h-full gap-0 py-0 relative')">
+    <div
+      class="absolute w-10 h-10 bg-background hover:bg-background/80 cursor-alias rounded-full top-2 right-2 z-10 flex items-center justify-center"
+      @click="favoriteStore.toggleFavorite(book)"
+    >
+      <Heart
+        v-if="favoriteStore.isFavorite(book.id)"
+        class="text-destructive"
+      />
+      <HeartPlus v-else class="text-primary" />
+    </div>
     <img
       :src="`https://picsum.photos/600/600?random=${book.id}`"
       :alt="`${book.title} by ${book.author}`"
