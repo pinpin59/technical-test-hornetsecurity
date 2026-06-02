@@ -76,7 +76,7 @@ onMounted(() => {
           v-for="book in paginatedBooks"
           :key="book.id"
           :book="book"
-          @select="router.push(`/books/${$event}`)"
+          @select="router.push(`/book/${$event}`)"
         />
       </template>
       <template v-if="!bookStore.loading && paginatedBooks.length === 0">

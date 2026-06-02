@@ -20,6 +20,8 @@ export default {
   },
   card: {
     viewDetails: "Voir le détail",
+    published: "Publié",
+    isbn: "ISBN",
   },
   notFound: {
     title: "Page non trouvée",
@@ -31,6 +33,8 @@ export default {
     description:
       "Gérez vos collections personnelles de lectures préférées ici.",
     badge: "Favori",
+    addToFavorites: "Ajouter aux favoris",
+    removeFromFavorites: "Retirer des favoris",
     book: "Livre",
     books: "Livres",
     emptyTitle: "Votre bibliothèque est vide",

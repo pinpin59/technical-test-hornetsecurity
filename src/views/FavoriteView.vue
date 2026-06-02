@@ -42,7 +42,7 @@ onMounted(() => {
         v-for="book in favoriteStore.favorites"
         :key="book.id"
         :book="book"
-        @select="router.push(`/books/${$event}`)"
+        @select="router.push(`/book/${$event}`)"
       />
     </div>
   </main>
