@@ -26,24 +26,25 @@ export const useBookStore = defineStore("book", () => {
   }
 
   async function fetchBookById(id: number) {
-    // If the selected book is already the requested one, we can skip the API call
-    if (selectedBook.value?.id === id) return;
-
-    // First, look for the book in the already loaded books
-    const existing = books.value.find((book) => book.id === id);
-    if (existing) {
-      selectedBook.value = existing;
-      return;
-    }
-
-    // Otherwise, make an API call
     loading.value = true;
     error.value = null;
+
     try {
-      const response = await bookApi.getBookById(id);
-      selectedBook.value = response.data[0];
+      if (!books.value.length) {
+        await fetchBooks();
+      }
+
+      const book = books.value.find((b) => b.id === id);
+
+      if (!book) {
+        selectedBook.value = null;
+        error.value = "Book not found";
+        return;
+      }
+
+      selectedBook.value = book;
     } catch (e) {
-      error.value = (e as Error).message;
+      error.value = "Failed to load book";
     } finally {
       loading.value = false;
     }

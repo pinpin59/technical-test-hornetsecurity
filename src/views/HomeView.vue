@@ -4,64 +4,61 @@ import { useBookStore } from "../stores/bookStore";
 import BookCard from "@/components/features/book/BookCard.vue";
 import BookCardSkeleton from "@/components/features/book/BookCardSkeleton.vue";
 import BooksPagination from "@/components/features/book/BooksPagination.vue";
-import CardEmpty from "@/components/ui/CardEmpty.vue";
+import CardEmpty from "@/components/features/shared/CardEmpty.vue";
+import SearchBar from "@/components/features/book/SearchBar.vue";
 import { useRouter } from "vue-router";
-import SearchBar from "@/components/ui/SearchBar.vue";
 import { useI18n } from "vue-i18n";
 import { SearchX } from "@lucide/vue";
 
-// Access the i18n instance for translations
-useI18n();
-
-// Access the book store and router
+const { t } = useI18n();
 const bookStore = useBookStore();
 const router = useRouter();
 
-// Pagination and search state
 const ITEMS_PER_PAGE = 6;
-const searchQuery = ref("");
-const currentPage = ref(1);
 
-// Event handlers for search and pagination
-function handleSearch(value: string) {
-  searchQuery.value = value;
-  currentPage.value = 1; // Reset to first page on new search
+// state
+const search = ref("");
+const page = ref(1);
+
+// fetch
+onMounted(() => {
+  bookStore.fetchBooks(50);
+});
+
+// handlers
+function onSearch(value: string) {
+  search.value = value;
+  page.value = 1;
 }
 
-// Event handler for pagination component
-function handlePageChange(page: number) {
-  currentPage.value = page;
+function onPageChange(p: number) {
+  page.value = p;
 }
 
-// Computed properties for filtering depending on search query
+// filtering
 const filteredBooks = computed(() => {
-  const q = searchQuery.value.toLowerCase().trim();
+  const q = search.value.toLowerCase().trim();
   if (!q) return bookStore.books;
-  return bookStore.books.filter(
-    (book) =>
-      book.title.toLowerCase().includes(q) ||
-      book.author.toLowerCase().includes(q) ||
-      book.genre.toLowerCase().includes(q),
+
+  return bookStore.books.filter((b) =>
+    `${b.title} ${b.author} ${b.genre}`.toLowerCase().includes(q),
   );
 });
 
+// pagination
 const paginatedBooks = computed(() => {
-  const start = (currentPage.value - 1) * ITEMS_PER_PAGE;
+  const start = (page.value - 1) * ITEMS_PER_PAGE;
   return filteredBooks.value.slice(start, start + ITEMS_PER_PAGE);
 });
 
 const total = computed(() => filteredBooks.value.length);
-
-onMounted(() => {
-  bookStore.fetchBooks(50);
-});
 </script>
 
 <template>
   <main class="mx-auto max-w-7xl px-4 py-8">
     <div>
       <h1 class="text-2xl font-bold text-foreground mb-6">Books</h1>
-      <SearchBar @search="handleSearch" class="mb-6" />
+      <SearchBar @search="onSearch" class="mb-6" />
     </div>
     <div
       class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
@@ -83,8 +80,8 @@ onMounted(() => {
         <div class="col-span-full">
           <CardEmpty
             :icon="SearchX"
-            :title="$t('home.noResultsTitle')"
-            :description="$t('home.noResultsMessage')"
+            :title="t('home.noResultsTitle')"
+            :description="t('home.noResultsMessage')"
           />
         </div>
       </template>
@@ -93,8 +90,8 @@ onMounted(() => {
       <BooksPagination
         :total="total"
         :items-per-page="ITEMS_PER_PAGE"
-        :current-page="currentPage"
-        @page-change="handlePageChange"
+        :current-page="page"
+        @page-change="onPageChange"
       />
     </div>
   </main>

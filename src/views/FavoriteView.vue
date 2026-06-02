@@ -1,36 +1,29 @@
 <script setup lang="ts">
-import { useI18n } from "vue-i18n";
 import FavoriteHeader from "@/components/features/favorite/FavoriteHeader.vue";
-import CardEmpty from "@/components/ui/CardEmpty.vue";
+import CardEmpty from "@/components/features/shared/CardEmpty.vue";
 import BookCard from "@/components/features/book/BookCard.vue";
+import { useI18n } from "vue-i18n";
 import { useFavoriteStore } from "@/stores/favoriteStore";
-import { onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { HeartPlus } from "@lucide/vue";
+import { storeToRefs } from "pinia";
 
-useI18n();
-
-const favoriteStore = useFavoriteStore();
 const router = useRouter();
-
-onMounted(() => {
-  console.log(
-    "Mounted FavoriteView, current favorites:",
-    favoriteStore.favorites.length,
-  );
-});
+const { t } = useI18n();
+const favoriteStore = useFavoriteStore();
+const { favorites } = storeToRefs(favoriteStore);
 </script>
 
 <template>
   <FavoriteHeader />
   <main class="mx-auto max-w-7xl px-4 py-8">
     <CardEmpty
-      v-if="favoriteStore.favorites.length === 0"
+      v-if="favorites.length === 0"
       :icon="HeartPlus"
-      :title="$t('favorites.emptyTitle')"
-      :description="$t('favorites.emptyMessage')"
-      :button-label="$t('favorites.emptyButton')"
-      button-to="/"
+      :title="t('favorites.emptyTitle')"
+      :description="t('favorites.emptyMessage')"
+      :buttonLabel="t('favorites.emptyButton')"
+      :buttonTo="'/'"
     />
     <div
       v-else
@@ -39,7 +32,7 @@ onMounted(() => {
       aria-relevant="additions removals"
     >
       <BookCard
-        v-for="book in favoriteStore.favorites"
+        v-for="book in favorites"
         :key="book.id"
         :book="book"
         @select="router.push(`/book/${$event}`)"

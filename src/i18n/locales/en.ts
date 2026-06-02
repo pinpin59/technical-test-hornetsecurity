@@ -22,6 +22,9 @@ export default {
     viewDetails: "View Details",
     published: "Published",
     isbn: "ISBN",
+    notAvailable: "Not Available",
+    notAvailableDesc: "This book is not available at the moment.",
+    notAvailableButton: "Back to Home",
   },
   notFound: {
     title: "Page Not Found",

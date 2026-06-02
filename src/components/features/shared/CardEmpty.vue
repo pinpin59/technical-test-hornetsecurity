@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type Component } from "vue";
-import Button from "@/components/ui/button/Button.vue";
 import { cn } from "@/lib/utils";
+import BaseLinkButton from "@/components/features/shared/BaseLinkButton.vue";
 
 withDefaults(
   defineProps<{
@@ -43,10 +43,11 @@ withDefaults(
     <p class="text-muted-foreground text-sm md:text-md">
       {{ description }}
     </p>
-    <Button v-if="buttonLabel" as-child :class="cn('mt-10')">
-      <RouterLink :to="buttonTo">
-        {{ buttonLabel }}
-      </RouterLink>
-    </Button>
+    <BaseLinkButton
+      v-if="buttonLabel"
+      :to="buttonTo"
+      :label="buttonLabel"
+      :class="cn('mt-10')"
+    />
   </section>
 </template>

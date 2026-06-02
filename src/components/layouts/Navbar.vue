@@ -42,6 +42,7 @@ const links = [
   <header class="border-b bg-card relative z-20">
     <div class="mx-auto max-w-7xl px-4 h-16 flex items-center justify-between">
       <!-- Logo -->
+
       <RouterLink
         to="/"
         class="font-bold text-lg text-primary"

@@ -6,7 +6,7 @@ import type { Book } from "@/types/book";
 import { cn } from "@/lib/utils";
 import { ref } from "vue";
 
-useI18n();
+const { t } = useI18n();
 const favoriteStore = useFavoriteStore();
 const props = defineProps<{ book: Book }>();
 
@@ -24,31 +24,37 @@ function handleClick() {
     :class="
       cn(
         'inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium cursor-pointer transition-colors duration-200 select-none',
-        favoriteStore.isFavorite(book.id)
+        favoriteStore.isFavorite(props.book.id)
           ? 'bg-destructive hover:bg-destructive/90 text-primary-foreground'
           : 'bg-primary hover:bg-primary/90 text-primary-foreground',
-        animating && 'btn-pop',
+        animating.valueOf() && 'btn-pop',
       )
     "
     @click="handleClick"
   >
     <Heart
-      v-if="favoriteStore.isFavorite(book.id)"
+      v-if="favoriteStore.isFavorite(props.book.id)"
       :class="
-        cn('size-4 transition-transform duration-200', animating && 'icon-pop')
+        cn(
+          'size-4 transition-transform duration-200',
+          animating.valueOf() && 'icon-pop',
+        )
       "
     />
     <HeartPlus
       v-else
       :class="
-        cn('size-4 transition-transform duration-200', animating && 'icon-pop')
+        cn(
+          'size-4 transition-transform duration-200',
+          animating.valueOf() && 'icon-pop',
+        )
       "
     />
-    <template v-if="favoriteStore.isFavorite(book.id)">
-      {{ $t("favorites.removeFromFavorites") }}
+    <template v-if="favoriteStore.isFavorite(props.book.id)">
+      {{ t("favorites.removeFromFavorites") }}
     </template>
     <template v-else>
-      {{ $t("favorites.addToFavorites") }}
+      {{ t("favorites.addToFavorites") }}
     </template>
   </button>
 </template>
