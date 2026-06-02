@@ -2,6 +2,8 @@
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { RouterLink } from "vue-router";
+import { Home, BookOpen, Menu, X } from "@lucide/vue";
+import { cn } from "@/lib/utils";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -9,8 +11,6 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import LangageButton from "@/components/layouts/LangageButton.vue";
-import { Home, BookOpen, Menu, X } from "@lucide/vue";
-import { cn } from "@/lib/utils";
 
 const { t } = useI18n();
 const mobileOpen = ref(false);

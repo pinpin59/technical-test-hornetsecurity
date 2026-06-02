@@ -15,24 +15,37 @@ import { Heart } from "@lucide/vue";
 import { HeartPlus } from "@lucide/vue";
 
 import { useFavoriteStore } from "@/stores/favoriteStore";
+import { ref } from "vue";
 
 useI18n();
-defineProps<{ book: Book }>();
+const props = defineProps<{ book: Book }>();
 defineEmits<{ (e: "select", id: number): void }>();
 
 const favoriteStore = useFavoriteStore();
+const { toggleFavorite, isFavorite } = favoriteStore;
+const animatingFavorite = ref(false);
+
+function handleFavoriteClick() {
+  animatingFavorite.value = true;
+  toggleFavorite(props.book);
+  setTimeout(() => {
+    animatingFavorite.value = false;
+  }, 400);
+}
 </script>
 
 <template>
   <Card :class="cn('flex flex-col overflow-hidden h-full gap-0 py-0 relative')">
     <div
-      class="absolute w-10 h-10 bg-background hover:bg-background/80 cursor-alias rounded-full top-2 right-2 z-10 flex items-center justify-center"
-      @click="favoriteStore.toggleFavorite(book)"
+      :class="
+        cn(
+          'absolute w-10 h-10 bg-background hover:bg-background/80 cursor-pointer rounded-full top-2 right-2 z-10 flex items-center justify-center transition-transform duration-200',
+          animatingFavorite && 'anim-pop',
+        )
+      "
+      @click="handleFavoriteClick"
     >
-      <Heart
-        v-if="favoriteStore.isFavorite(book.id)"
-        class="text-destructive"
-      />
+      <Heart v-if="isFavorite(book.id)" class="text-destructive" />
       <HeartPlus v-else class="text-primary" />
     </div>
     <img
