@@ -1,5 +1,79 @@
-# Vue 3 + TypeScript + Vite
+# 📚 Book Explorer
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+A small Vue 3 application that allows users to browse books, search through them, view details, and manage favorites.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## Features
+
+- Browse books from FakerAPI
+- Search by title, author, or genre
+- Book details page
+- Favorites management with localStorage persistence
+- Pagination
+- Internationalization (i18n)
+- Loading and error handling
+- Unit testing with Vitest
+
+## Tech Stack
+
+- Vue 3
+- TypeScript
+- Pinia
+- Vue Router
+- Tailwind CSS
+- Shadcn Vue
+- Vue i18n
+- Vitest
+- FakerAPI
+
+## Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone <repository-url>
+cd <repository-name>
+```
+
+### 2. Create a `.env` file
+
+```env
+VITE_BASE_URL_API=https://fakerapi.it/api/v2
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+### 4. Start the development server
+
+```bash
+npm run dev
+```
+
+### 5. Run tests
+
+```bash
+npm run test
+```
+
+## Technical Choices
+
+- Pinia for centralized state management
+- Service layer for API communication
+- Separation between business components and reusable UI components
+- Favorites persisted using localStorage
+- Unit tests for stores and components
+
+## Possible Improvements
+
+- Add sorting options (title, author, date)
+- Improve accessibility (ARIA labels, keyboard navigation)
+- Persist search and pagination state in the URL
+- Increase test coverage for components
+- Add theme switching (light/dark mode) to improve accessibility and user experience
+
+## Time Spent
+
+~ 10 hours

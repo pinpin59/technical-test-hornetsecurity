@@ -50,12 +50,12 @@ export const useBookStore = defineStore("book", () => {
     }
   }
 
-  async function deleteBook(id: number) {
-    books.value = books.value.filter((book) => book.id !== id);
-    if (selectedBook.value?.id === id) {
-      selectedBook.value = null;
-    }
-  }
+  //   async function deleteBook(id: number) {
+  //     books.value = books.value.filter((book) => book.id !== id);
+  //     if (selectedBook.value?.id === id) {
+  //       selectedBook.value = null;
+  //     }
+  //   }
 
   return {
     books,
@@ -64,6 +64,6 @@ export const useBookStore = defineStore("book", () => {
     error,
     fetchBooks,
     fetchBookById,
-    deleteBook,
+    // deleteBook,
   };
 });
