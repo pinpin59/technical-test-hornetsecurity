@@ -58,9 +58,9 @@ const total = computed(() => filteredBooks.value.length);
 <template>
   <main class="mx-auto max-w-7xl px-4 py-8">
     <BookHeader :paginatedBooks="paginatedBooks" />
-
+    <SearchBar @search="onSearch" />
     <div
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+      class="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
       aria-live="polite"
       aria-relevant="additions removals"
     >
