@@ -52,6 +52,9 @@ function handleFavoriteClick() {
       :src="`https://picsum.photos/600/600?random=${book.id}`"
       :alt="`${book.title} by ${book.author}`"
       class="w-full lg:h-96 md:h-72 h-48 object-cover hover:brightness-80 transition"
+      fetchpriority="high"
+      loading="eager"
+      decoding="async"
     />
     <CardHeader class="py-4">
       <CardTitle>{{ book.title }}</CardTitle>

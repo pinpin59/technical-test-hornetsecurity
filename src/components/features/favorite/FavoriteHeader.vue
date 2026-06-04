@@ -37,9 +37,9 @@ const favoriteStore = useFavoriteStore();
         </Badge>
       </div>
 
-      <p class="mt-4 text-sm md:text-md text-muted-foreground">
+      <h2 class="mt-4 text-sm md:text-md text-muted-foreground">
         {{ $t("favorites.description") }}
-      </p>
+      </h2>
     </div>
   </section>
 </template>

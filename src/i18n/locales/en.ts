@@ -1,6 +1,7 @@
 export default {
   welcome: "Welcome",
   home: {
+    results: "Results",
     noResultsTitle: "No results found",
     noResultsMessage:
       "Try adjusting your search or filter to find what you're looking for.",

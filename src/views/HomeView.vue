@@ -60,6 +60,7 @@ const total = computed(() => filteredBooks.value.length);
       <h1 class="text-2xl font-bold text-foreground mb-6">Books</h1>
       <SearchBar @search="onSearch" class="mb-6" />
     </div>
+
     <div
       class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
       aria-live="polite"
@@ -69,6 +70,9 @@ const total = computed(() => filteredBooks.value.length);
         <BookCardSkeleton v-for="n in 10" :key="n" />
       </template>
       <template v-else>
+        <h2 class="sr-only">
+          {{ t("home.results") }}
+        </h2>
         <BookCard
           v-for="book in paginatedBooks"
           :key="book.id"
