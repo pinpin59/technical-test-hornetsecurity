@@ -14,7 +14,9 @@ const favoriteStore = useFavoriteStore();
   <section class="mb-6 bg-white p-4 border-b">
     <div class="mx-auto max-w-7xl px-4 py-8">
       <div class="flex flex-row justify-between items-center gap-2">
-        <h1 class="text-md md:text-lg lg:text-2xl font-bold">
+        <h1
+          class="bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent text-2xl md:text-4xl font-bold tracking-tight"
+        >
           {{ $t("favorites.title") }}
         </h1>
         <Badge
@@ -37,7 +39,7 @@ const favoriteStore = useFavoriteStore();
         </Badge>
       </div>
 
-      <h2 class="mt-4 text-sm md:text-md text-muted-foreground">
+      <h2 class="mt-4 text-sm sm:text-base text-muted-foreground">
         {{ $t("favorites.description") }}
       </h2>
     </div>

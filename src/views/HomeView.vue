@@ -9,6 +9,7 @@ import SearchBar from "@/components/features/book/SearchBar.vue";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { SearchX } from "@lucide/vue";
+import BookHeader from "@/components/features/book/BookHeader.vue";
 
 const { t } = useI18n();
 const bookStore = useBookStore();
@@ -56,10 +57,7 @@ const total = computed(() => filteredBooks.value.length);
 
 <template>
   <main class="mx-auto max-w-7xl px-4 py-8">
-    <div>
-      <h1 class="text-2xl font-bold text-foreground mb-6">Books</h1>
-      <SearchBar @search="onSearch" class="mb-6" />
-    </div>
+    <BookHeader :paginatedBooks="paginatedBooks" />
 
     <div
       class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
@@ -90,7 +88,7 @@ const total = computed(() => filteredBooks.value.length);
         </div>
       </template>
     </div>
-    <div class="mt-6 flex justify-center">
+    <div class="mt-10 flex justify-center">
       <BooksPagination
         :total="total"
         :items-per-page="ITEMS_PER_PAGE"

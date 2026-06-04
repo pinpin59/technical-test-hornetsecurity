@@ -1,13 +1,16 @@
 export default {
   welcome: "Welcome",
   home: {
+    title: "Book Library",
+    description:
+      "Search, filter and explore books in a clean, fast and responsive interface.",
     results: "Results",
     noResultsTitle: "No results found",
     noResultsMessage:
       "Try adjusting your search or filter to find what you're looking for.",
   },
   nav: {
-    title: "📚 Book Explorer",
+    title: "Book Explorer",
     home: "Home",
     books: "Books",
     favorites: "Favorites",

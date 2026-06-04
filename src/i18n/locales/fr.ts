@@ -1,13 +1,16 @@
 export default {
   welcome: "Bienvenue",
   home: {
+    title: "Bibliothèque de livres",
+    description:
+      "Recherchez, filtrez et explorez les livres dans une interface propre, rapide et réactive.",
     results: "Résultats",
     noResultsTitle: "Aucun résultat trouvé",
     noResultsMessage:
       "Essayez d'ajuster votre recherche ou vos filtres pour trouver ce que vous cherchez.",
   },
   nav: {
-    title: "📚 Book Explorer",
+    title: "Explorateur de livres",
     home: "Accueil",
     books: "Livres",
     favorites: "Favoris",

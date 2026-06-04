@@ -11,6 +11,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import LangageButton from "@/components/layouts/LangageButton.vue";
+import Logo from "../features/shared/Logo.vue";
 
 const { t } = useI18n();
 const mobileOpen = ref(false);
@@ -45,10 +46,14 @@ const links = [
 
       <RouterLink
         to="/"
-        class="font-bold text-lg text-primary"
-        :aria-label="t('nav.title')"
+        class="flex items-center gap-2 group group-hover:opacity-80 transition-opacity"
+        aria-label="Home"
       >
-        {{ t("nav.title") }}
+        <Logo />
+
+        <span class="font-bold text-lg text-primary transition-opacity">
+          {{ t("nav.title") }}
+        </span>
       </RouterLink>
 
       <!-- Desktop nav -->
