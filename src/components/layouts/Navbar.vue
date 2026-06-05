@@ -40,7 +40,7 @@ const links = [
     />
   </Transition>
 
-  <header class="border-b bg-card relative z-20">
+  <header class="border-b bg-card z-20 fixed top-0 left-0 right-0">
     <div class="mx-auto max-w-7xl px-4 h-16 flex items-center justify-between">
       <!-- Logo -->
 

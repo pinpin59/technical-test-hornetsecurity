@@ -5,7 +5,7 @@ const { t } = useI18n();
 </script>
 
 <template>
-  <main
+  <div
     class="flex flex-col items-center justify-center min-h-screen gap-4"
     role="main"
     aria-labelledby="notfound-title"
@@ -23,5 +23,5 @@ const { t } = useI18n();
       :label="t('notFound.backHome')"
       class="px-4 py-2 rounded bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors duration-200 shadow"
     />
-  </main>
+  </div>
 </template>

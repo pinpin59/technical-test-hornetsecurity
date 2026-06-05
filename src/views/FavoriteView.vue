@@ -2,6 +2,7 @@
 import FavoriteHeader from "@/components/features/favorite/FavoriteHeader.vue";
 import CardEmpty from "@/components/features/shared/CardEmpty.vue";
 import BookCard from "@/components/features/book/BookCard.vue";
+import BackButton from "@/components/features/shared/BackButton.vue";
 import { useI18n } from "vue-i18n";
 import { useFavoriteStore } from "@/stores/favoriteStore";
 import { useRouter } from "vue-router";
@@ -16,7 +17,9 @@ const { favorites } = storeToRefs(favoriteStore);
 
 <template>
   <FavoriteHeader />
-  <main class="mx-auto max-w-7xl px-4 py-8">
+  <div class="mx-auto max-w-7xl px-4">
+    <BackButton variant="default" class="mb-6" />
+
     <CardEmpty
       v-if="favorites.length === 0"
       :icon="HeartPlus"
@@ -38,5 +41,5 @@ const { favorites } = storeToRefs(favoriteStore);
         @select="router.push(`/book/${$event}`)"
       />
     </div>
-  </main>
+  </div>
 </template>

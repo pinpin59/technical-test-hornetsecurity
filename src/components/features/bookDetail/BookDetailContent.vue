@@ -3,6 +3,7 @@ import { useI18n } from "vue-i18n";
 import Badge from "@/components/ui/badge/Badge.vue";
 import { cn } from "@/lib/utils";
 import ButtonFavorite from "@/components/features/bookDetail/ButtonFavorite.vue";
+import BackButton from "@/components/features/shared/BackButton.vue";
 import type { Book } from "@/types/book";
 
 const { t } = useI18n();
@@ -11,6 +12,7 @@ defineProps<{ book: Book }>();
 </script>
 
 <template>
+  <BackButton class="p-6" />
   <article class="bg-background rounded-lg p-6 flex flex-col md:flex-row gap-8">
     <section class="w-full md:w-2/5 shrink-0">
       <img

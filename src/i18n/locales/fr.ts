@@ -1,5 +1,6 @@
 export default {
   welcome: "Bienvenue",
+  back: "Retour",
   home: {
     title: "Bibliothèque de livres",
     description:

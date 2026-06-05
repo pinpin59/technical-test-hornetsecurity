@@ -56,7 +56,7 @@ const total = computed(() => filteredBooks.value.length);
 </script>
 
 <template>
-  <main class="mx-auto max-w-7xl px-4 py-8">
+  <div class="mx-auto max-w-7xl px-4 py-8">
     <BookHeader :paginatedBooks="paginatedBooks" />
     <SearchBar @search="onSearch" />
     <div
@@ -96,5 +96,5 @@ const total = computed(() => filteredBooks.value.length);
         @page-change="onPageChange"
       />
     </div>
-  </main>
+  </div>
 </template>

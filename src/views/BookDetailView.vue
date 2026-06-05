@@ -25,7 +25,7 @@ watch(
 </script>
 
 <template>
-  <main class="mx-auto max-w-7xl px-4 py-8">
+  <div class="mx-auto max-w-7xl px-4 py-8">
     <BookDetailSkeleton v-if="loading" />
     <BookDetailContent v-else-if="selectedBook" :book="selectedBook" />
     <CardEmpty
@@ -36,5 +36,5 @@ watch(
       :button-label="t('card.notAvailableButton')"
       button-to="/"
     />
-  </main>
+  </div>
 </template>
