@@ -27,7 +27,7 @@ defineProps({
 
     <div class="mt-3 flex items-center gap-2 text-xs text-muted-foreground">
       <span class="inline-flex items-center gap-1">
-        📚 {{ paginatedBooks.length }} {{ t("results") }}
+        📚 {{ paginatedBooks.length }} {{ t("home.results") }}
       </span>
     </div>
   </div>
